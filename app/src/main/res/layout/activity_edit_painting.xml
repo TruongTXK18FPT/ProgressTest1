@@ -1,0 +1,265 @@
+<!-- res/layout/activity_edit_painting.xml -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <!-- Top AppBar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Thêm / Sửa tranh"
+            app:titleCentered="true"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+        <!-- Nội dung cuộn -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:padding="16dp"
+            android:layout_marginTop="?attr/actionBarSize">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Thẻ chứa form -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="?attr/colorOutline"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Tên tranh -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Tên tranh"
+                            app:startIconDrawable="@drawable/ic_brush"
+                            app:hintEnabled="true"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="60"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapWords|textPersonName"
+                                tools:text="Trúc Chỉ Sen Vàng" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Tác giả -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Tác giả"
+                            android:layout_marginTop="12dp"
+                            app:startIconDrawable="@drawable/ic_person"
+                            app:endIconMode="clear_text"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtAuthor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textCapWords|textPersonName"
+                                tools:text="Mộc Linh" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Giá -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Giá"
+                            android:layout_marginTop="12dp"
+                            app:startIconDrawable="@drawable/ic_price"
+                            app:suffixText=" VND"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtPrice"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                tools:text="3500000" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Mô tả -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Mô tả (tùy chọn)"
+                            android:layout_marginTop="12dp"
+                            app:startIconDrawable="@drawable/ic_image"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtDescription"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textMultiLine"
+                                android:maxLines="3"
+                                tools:text="Mô tả về bức tranh..." />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Image Upload Section -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hình ảnh tranh"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:layout_marginBottom="8dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <FrameLayout
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginEnd="12dp">
+
+                                    <ImageView
+                                        android:id="@+id/ivPreview"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:background="?attr/colorSurfaceVariant"
+                                        android:src="@drawable/ic_image" />
+
+                                    <ProgressBar
+                                        android:id="@+id/progressImage"
+                                        android:layout_width="24dp"
+                                        android:layout_height="24dp"
+                                        android:layout_gravity="center"
+                                        android:visibility="gone"
+                                        android:indeterminateTint="?attr/colorPrimary" />
+
+                                    <ImageView
+                                        android:id="@+id/ivImagePlaceholder"
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_image"
+                                        android:alpha="0.3"
+                                        android:visibility="visible" />
+                                </FrameLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/btnSelectImage"
+                                        style="?attr/materialButtonOutlinedStyle"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Chọn ảnh"
+                                        app:icon="@drawable/ic_image" />
+
+                                    <TextView
+                                        android:id="@+id/tvImageStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:text="Chưa chọn ảnh"
+                                        android:textSize="12sp"
+                                        android:textColor="?attr/colorOnSurfaceVariant" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Checkboxes for flags -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/cbIsNew"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tranh mới"
+                                android:layout_marginEnd="16dp" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/cbIsOnSale"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đang khuyến mãi" />
+                        </LinearLayout>
+
+                        <!-- Nút hành động -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSave"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Lưu"
+                                app:icon="@drawable/ic_save"
+                                app:iconGravity="textStart"
+                                app:cornerRadius="16dp" />
+
+                            <!-- Nút phụ (tuỳ chọn): Hủy -->
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnCancel"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="Hủy"
+                                app:cornerRadius="16dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Gợi ý (help text) -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mẹo: Nhấn giữ vào tranh trong danh sách để xóa nhanh."
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
+

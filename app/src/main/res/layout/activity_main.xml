@@ -1,0 +1,161 @@
+<!-- res/layout/activity_main.xml -->
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <!-- Top AppBar -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/menu_main"
+                app:title="Shop Tranh"
+                app:titleCentered="true" />
+
+            <!-- Khối filter/tìm kiếm (nằm dưới AppBar) -->
+            <LinearLayout
+                android:id="@+id/headerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:background="?attr/colorSurface"
+                android:elevation="4dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:strokeColor="?attr/colorOutline"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <!-- Ô tìm kiếm -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Tìm tranh, tác giả..."
+                            app:endIconMode="clear_text"
+                            app:startIconDrawable="@android:drawable/ic_menu_search">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtSearch"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:imeOptions="actionSearch"
+                                android:inputType="text"
+                                tools:text="trúc chỉ" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Chip lọc nhanh -->
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:chipSpacingHorizontal="6dp"
+                            app:selectionRequired="false"
+                            app:singleLine="true"
+                            app:singleSelection="true">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipAll"
+                                style="@style/Widget.Material3.Chip.Filter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="Tất cả"
+                                app:checkedIconVisible="false" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipSale"
+                                style="@style/Widget.Material3.Chip.Filter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Đang KM" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipNew"
+                                style="@style/Widget.Material3.Chip.Filter"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mới" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipSortPrice"
+                                style="@style/Widget.Material3.Chip.Suggestion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Giá ↑↓" />
+                        </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Danh sách tranh -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPainting"
+        android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="200dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="96dp"
+                android:clipToPadding="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/item_painting" />
+
+            <!-- Empty state (tuỳ chọn, ẩn mặc định) -->
+            <LinearLayout
+                android:id="@+id/emptyState"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chưa có tranh nào"
+                    android:textAppearance="?attr/textAppearanceHeadlineSmall" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Nhấn “Thêm tranh” để bắt đầu"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+            </LinearLayout>
+
+            <!-- Extended FAB: giữ nguyên ID fabAdd -->
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Thêm tranh"
+                app:icon="@drawable/ic_save"
+                app:layout_anchor="@id/rvPainting"
+                app:layout_anchorGravity="bottom|end" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
